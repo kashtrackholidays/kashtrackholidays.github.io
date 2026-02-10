@@ -15,6 +15,7 @@
     :root {
       --primary: #1e3a8a;
       --accent: #ea580c;
+      --light-bg: #f9fafb;
     }
 
     * {
@@ -25,7 +26,6 @@
 
     html, body {
       width: 100%;
-      height: 100%;
       overflow-x: hidden;
     }
 
@@ -33,20 +33,25 @@
       font-family: 'Poppins', sans-serif;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-                  url('images/hero-bg.jpg') center/cover no-repeat fixed;
-      color: #fff;
-      min-height: 100vh;
+      background: var(--light-bg);
+      color: #333;
     }
 
-    /* Top bar – transparent + blur for readability over image */
+    /* Background image only for top bar + header + hero */
+    .top-bar,
+    header,
+    .hero {
+      background: url('images/hero-bg.jpg') center/cover no-repeat fixed;
+    }
+
+    /* Top dark header – grey tint overlay */
     .top-bar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       width: 100%;
-      background: transparent;
+      background: rgba(17, 24, 39, 0.7);      /* dark grey tint */
       color: white;
       padding: 0.6rem 5%;
       font-size: 0.95rem;
@@ -67,14 +72,14 @@
       color: #facc15 !important;
     }
 
-    /* Navigation bar – transparent + stronger blur */
+    /* Blue navigation header – blue tint overlay */
     header {
       position: fixed;
       top: 42px;
       left: 0;
       right: 0;
       width: 100%;
-      background: transparent;
+      background: rgba(30, 58, 138, 0.75);    /* blue tint matching --primary */
       color: white;
       z-index: 1100;
       padding: 0.8rem 5%;
@@ -141,12 +146,14 @@
       background: #c2410c;
     }
 
-    /* Hero – inherits background from body */
+    /* Hero section – same image + dark overlay */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
       margin-top: calc(42px + 72px);
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                  inherit; /* inherits image from body */
       color: white;
       display: flex;
       align-items: center;
@@ -192,8 +199,7 @@
       padding: 6rem 5% 4rem;
       max-width: 1400px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(2px);
+      background: var(--light-bg); /* clean background – no image */
     }
 
     .title {
