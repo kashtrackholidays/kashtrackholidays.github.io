@@ -17,7 +17,6 @@
       --accent: #ea580c;
     }
 
-    /* Prevent horizontal overflow globally */
     * {
       box-sizing: border-box;
     }
@@ -26,11 +25,13 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;           /* ← Key fix: hides any horizontal scrollbar */
+      overflow-x: hidden;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     .top-bar {
@@ -60,6 +61,7 @@
       font-size: 1.05rem;
       font-weight: 400;
       transition: color 0.2s;
+      word-break: break-all;
     }
 
     .top-bar a:hover {
@@ -75,30 +77,46 @@
       background: var(--primary);
       color: white;
       z-index: 1100;
-      padding: 0.9rem 5%;
+      padding: 0.8rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      flex-wrap: wrap;
+      gap: 0.8rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
+      flex-shrink: 0;
     }
 
     .logo img {
-      height: 48px;
-      margin-right: 1rem;
+      height: 45px;
+      margin-right: 0.8rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;          /* Force single line */
+      gap: 0.6rem;
+      overflow-x: auto;           /* Horizontal scroll if too narrow */
+      padding: 0.3rem 0;
+      white-space: nowrap;
     }
 
     nav a {
       color: white;
-      margin: 0 1.2rem;
+      margin: 0 0.6rem;
       text-decoration: none;
       font-weight: 500;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      flex-shrink: 0;
     }
 
     nav a:hover {
@@ -108,11 +126,16 @@
     .btn {
       background: var(--accent);
       color: white;
-      padding: 0.75rem 1.6rem;
+      padding: 0.65rem 1.3rem;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      min-width: 110px;           /* Prevent button shrinking too much */
+      text-align: center;
+      flex-shrink: 0;
     }
 
     .btn:hover {
@@ -121,8 +144,8 @@
 
     .hero {
       width: 100%;
-      height: calc(100vh - 38px - 72px);
       min-height: 620px;
+      height: auto;
       margin-top: calc(38px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
@@ -131,7 +154,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0 5%;
+      padding: 4rem 5% 6rem;
       overflow: hidden;
     }
 
@@ -154,6 +177,8 @@
     .section {
       width: 100%;
       padding: 6rem 5% 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .title {
@@ -175,8 +200,6 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .card {
@@ -292,6 +315,85 @@
 
     .modal-content button[type="submit"]:hover {
       background: #c2410c;
+    }
+
+    /* Mobile adjustments – prevent nav splitting */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.7rem 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding: 0.4rem 0;
+        scrollbar-width: thin; /* Firefox */
+      }
+
+      nav::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      nav::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.3);
+        border-radius: 3px;
+      }
+
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .btn {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.9rem;
+        min-width: 100px;
+        white-space: nowrap;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .logo img {
+        height: 38px;
+      }
+
+      .top-bar {
+        padding: 0.7rem 5%;
+        font-size: 0.9rem;
+      }
+
+      .top-bar a {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        margin: 0 0.4rem;
+        font-size: 0.85rem;
+      }
+
+      .btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+        min-width: 90px;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .logo img {
+        height: 35px;
+      }
     }
   </style>
 </head>
