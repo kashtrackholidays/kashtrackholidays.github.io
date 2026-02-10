@@ -32,9 +32,10 @@
       font-family: 'Poppins', sans-serif;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      background: #f9fafb;               /* ← light background for whole page */
     }
 
-    /* Top bar – minimal height, GPU forced, matching border to eliminate seam */
+    /* Top bar */
     .top-bar {
       position: fixed;
       top: 0;
@@ -43,7 +44,7 @@
       width: 100%;
       background: #111827;
       color: white;
-      padding: 2.5rem 5%;
+      padding: 0.5rem 5%;
       font-size: 0.9rem;
       line-height: 1.1;
       display: flex;
@@ -52,9 +53,6 @@
       z-index: 1200;
       box-shadow: none;
       border: 0;
-      border-bottom: 1px solid #111827;     /* exact match – hides rendering seam */
-      transform: translateZ(0);              /* forces GPU – fixes Chrome sub-pixel line */
-      will-change: transform;                /* extra hint for Chrome */
     }
 
     .top-bar a {
@@ -67,10 +65,10 @@
       color: #facc15 !important;
     }
 
-    /* Blue header – slight overlap + GPU force to kill any remaining line */
+    /* Navigation bar */
     header {
       position: fixed;
-      top: 41px;                             /* 1px overlap hides seam completely in Chrome */
+      top: 42px;
       left: 0;
       right: 0;
       width: 100%;
@@ -85,9 +83,6 @@
       flex-wrap: wrap;
       gap: 0.6rem;
       border: 0;
-      border-top: none;
-      transform: translateZ(0);
-      will-change: transform;
     }
 
     .logo {
@@ -146,11 +141,12 @@
       background: #c2410c;
     }
 
+    /* Hero section */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(41px + 72px);          /* adjusted for 1px overlap */
+      margin-top: calc(42px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -196,7 +192,11 @@
       max-width: 90%;
     }
 
-    main { padding-top: 0; }
+    /* Main content – light background hides any remaining seam */
+    main {
+      background: #f9fafb;               /* ← this color makes white lines disappear */
+      padding-top: 0;
+    }
 
     .section {
       width: 100%;
@@ -264,7 +264,7 @@
       width: 100%;
     }
 
-    /* Modal styles (unchanged) */
+    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -341,7 +341,7 @@
       background: #c2410c;
     }
 
-    /* Mobile – tight fit */
+    /* Mobile adjustments */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.6rem 5%;
@@ -352,7 +352,7 @@
       }
 
       header {
-        top: 71px;                      /* adjusted for mobile stacking */
+        top: 72px;
         padding: 0.6rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -360,7 +360,7 @@
       }
 
       .hero {
-        margin-top: calc(71px + 72px);
+        margin-top: calc(72px + 72px);
         padding: 4rem 5% 6rem;
         min-height: 500px;
       }
@@ -384,11 +384,11 @@
 
     @media (max-width: 480px) {
       header {
-        top: 73px;
+        top: 74px;
       }
 
       .hero {
-        margin-top: calc(73px + 72px);
+        margin-top: calc(74px + 72px);
       }
 
       .hero h1 {
@@ -604,5 +604,3 @@
 
 </body>
 </html>
-
-
