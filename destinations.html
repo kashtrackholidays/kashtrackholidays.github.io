@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Assuming you have a separate style.css – keeping your inline style overrides -->
 
   <style>
     :root {
@@ -19,7 +19,6 @@
       --accent: #ea580c;
     }
 
-    /* Critical fixes for horizontal overflow */
     * {
       box-sizing: border-box;
     }
@@ -28,7 +27,7 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;           /* ← This hides any horizontal scrollbar */
+      overflow-x: hidden;
     }
 
     body {
@@ -66,7 +65,7 @@
     /* Header (logo + nav) */
     header {
       position: fixed;
-      top: 38px;
+      top: 42px;                    /* more consistent value */
       left: 0;
       right: 0;
       width: 100%;
@@ -78,6 +77,8 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .logo {
@@ -85,6 +86,8 @@
       align-items: center;
       font-size: 1.6rem;
       font-weight: 700;
+      white-space: nowrap;          /* ← prevents logo text split */
+      flex-shrink: 0;
     }
 
     .logo img {
@@ -92,11 +95,23 @@
       margin-right: 1rem;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 0.8rem;
+      overflow-x: auto;
+      padding: 0.3rem 0;
+    }
+
     nav a {
       color: white;
-      margin: 0 1.2rem;
+      margin: 0 1.1rem;
       text-decoration: none;
       font-weight: 500;
+      white-space: nowrap;           /* ← key fix: no mid-word breaking */
+      flex-shrink: 0;
+      font-size: 1rem;
     }
 
     nav a:hover {
@@ -111,6 +126,8 @@
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .btn:hover {
@@ -118,7 +135,7 @@
     }
 
     main {
-      margin-top: calc(38px + 78px);
+      margin-top: calc(42px + 78px);
       padding-top: 2rem;
       width: 100%;
     }
@@ -126,8 +143,8 @@
     .section {
       padding: 6rem 5% 4rem;
       width: 100%;
-      max-width: 1400px;           /* Prevents ultra-wide stretching */
-      margin: 0 auto;              /* Centers content */
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .title {
@@ -257,6 +274,57 @@
 
     .modal-content button[type="submit"]:hover {
       background: #c2410c;
+    }
+
+    /* Mobile – prevent text splitting */
+    @media (max-width: 768px) {
+      header {
+        top: 44px;                    /* slight adjustment – helps avoid gap */
+        padding: 0.7rem 4%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+
+      .logo {
+        font-size: 1.35rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.4rem 0;
+      }
+
+      nav a {
+        margin: 0 0.9rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      main {
+        margin-top: calc(44px + 78px);
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-bar {
+        font-size: 0.85rem;
+        padding: 0.6rem 4%;
+      }
+
+      header {
+        top: 46px;
+      }
+
+      nav a {
+        margin: 0 0.7rem;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
