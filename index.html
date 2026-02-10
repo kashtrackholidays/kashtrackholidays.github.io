@@ -34,7 +34,7 @@
       text-size-adjust: 100%;
     }
 
-    /* Top bar – no shadow, matching border to kill seam/line */
+    /* Top bar – no shadow, matching border to eliminate seam/line */
     .top-bar {
       position: fixed;
       top: 0;
@@ -52,7 +52,8 @@
       z-index: 1200;
       box-shadow: none;
       border: 0;
-      border-bottom: 1px solid #111827;  /* blends perfectly – no visible line */
+      border-bottom: 1px solid #111827;  /* blends perfectly – hides any white seam */
+      transform: translateZ(0);          /* forces GPU rendering – fixes Chrome artifact */
     }
 
     .top-bar a {
@@ -65,10 +66,10 @@
       color: #facc15 !important;
     }
 
-    /* Blue header – flush, no top border */
+    /* Navigation bar – flush, no top border */
     header {
       position: fixed;
-      top: 42px;                    /* tight alignment – no gap/line */
+      top: 42px;                        /* tight alignment – no gap/line in Chrome */
       left: 0;
       right: 0;
       width: 100%;
@@ -84,6 +85,7 @@
       gap: 0.6rem;
       border: 0;
       border-top: none;
+      transform: translateZ(0);          /* also helps on header */
     }
 
     .logo {
