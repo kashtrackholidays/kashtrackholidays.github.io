@@ -34,7 +34,7 @@
       text-size-adjust: 100%;
     }
 
-    /* Top bar – no shadow, no border, minimal height */
+    /* Top bar – no shadow, matching border to kill seam/line */
     .top-bar {
       position: fixed;
       top: 0;
@@ -52,7 +52,7 @@
       z-index: 1200;
       box-shadow: none;
       border: 0;
-      outline: 0;
+      border-bottom: 1px solid #111827;  /* blends perfectly – no visible line */
     }
 
     .top-bar a {
@@ -65,10 +65,10 @@
       color: #facc15 !important;
     }
 
-    /* Navigation bar – starts exactly where top bar ends (no gap/line) */
+    /* Blue header – flush, no top border */
     header {
       position: fixed;
-      top: 42px;                    /* Pixel-perfect flush fit */
+      top: 42px;                    /* tight alignment – no gap/line */
       left: 0;
       right: 0;
       width: 100%;
@@ -83,7 +83,7 @@
       flex-wrap: wrap;
       gap: 0.6rem;
       border: 0;
-      outline: 0;
+      border-top: none;
     }
 
     .logo {
@@ -260,7 +260,7 @@
       width: 100%;
     }
 
-    /* Modal styles */
+    /* Modal styles (unchanged) */
     .modal {
       display: none;
       position: fixed;
@@ -348,7 +348,7 @@
       }
 
       header {
-        top: 72px;                    /* Flush fit for mobile */
+        top: 72px;
         padding: 0.6rem 5%;
         flex-direction: column;
         align-items: flex-start;
