@@ -34,6 +34,7 @@
       text-size-adjust: 100%;
     }
 
+    /* Top contact bar – improved mobile handling */
     .top-bar {
       position: fixed;
       top: 0;
@@ -42,35 +43,38 @@
       width: 100%;
       background: #111827;
       color: white;
-      padding: 0.55rem 5%;
+      padding: 0.7rem 5%;
       font-size: 0.95rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1200;
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    .top-bar > div:first-child span {
-      margin-right: 1.3rem;
+    .top-bar > div:first-child {
+      white-space: nowrap;
     }
 
     .top-bar a {
       color: white !important;
       text-decoration: none;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 400;
       transition: color 0.2s;
-      word-break: break-all;
+      white-space: nowrap;
     }
 
     .top-bar a:hover {
       color: #facc15 !important;
     }
 
+    /* Navigation header – improved mobile handling */
     header {
       position: fixed;
-      top: 38px;
+      top: 50px; /* Adjusted for top-bar height + some breathing room */
       left: 0;
       right: 0;
       width: 100%;
@@ -102,11 +106,21 @@
     nav {
       display: flex;
       align-items: center;
-      flex-wrap: nowrap;          /* Force single line */
+      flex-wrap: nowrap;
       gap: 0.6rem;
-      overflow-x: auto;           /* Horizontal scroll if too narrow */
+      overflow-x: auto;
       padding: 0.3rem 0;
       white-space: nowrap;
+      scrollbar-width: thin;
+    }
+
+    nav::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    nav::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 3px;
     }
 
     nav a {
@@ -133,7 +147,7 @@
       cursor: pointer;
       white-space: nowrap;
       font-size: 0.95rem;
-      min-width: 110px;           /* Prevent button shrinking too much */
+      min-width: 110px;
       text-align: center;
       flex-shrink: 0;
     }
@@ -146,7 +160,7 @@
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(38px + 72px);
+      margin-top: calc(50px + 72px); /* Adjusted for new top-bar height */
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -240,7 +254,7 @@
       width: 100%;
     }
 
-    /* Modal styles */
+    /* Modal styles (unchanged) */
     .modal {
       display: none;
       position: fixed;
@@ -317,9 +331,22 @@
       background: #c2410c;
     }
 
-    /* Mobile adjustments – prevent nav splitting */
+    /* Mobile adjustments – prevent both headers from splitting/cutting */
     @media (max-width: 768px) {
+      .top-bar {
+        padding: 0.8rem 5%;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+        font-size: 0.9rem;
+      }
+
+      .top-bar a {
+        font-size: 0.95rem;
+      }
+
       header {
+        top: 70px; /* Increased to make space after stacked top-bar */
         padding: 0.7rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -332,29 +359,17 @@
         gap: 0.5rem;
         overflow-x: auto;
         padding: 0.4rem 0;
-        scrollbar-width: thin; /* Firefox */
-      }
-
-      nav::-webkit-scrollbar {
-        height: 6px;
-      }
-
-      nav::-webkit-scrollbar-thumb {
-        background: rgba(255,255,255,0.3);
-        border-radius: 3px;
       }
 
       nav a {
         margin: 0 0.5rem;
         font-size: 0.9rem;
-        white-space: nowrap;
       }
 
       .btn {
         padding: 0.6rem 1.1rem;
         font-size: 0.9rem;
         min-width: 100px;
-        white-space: nowrap;
       }
 
       .logo {
@@ -365,17 +380,23 @@
         height: 38px;
       }
 
-      .top-bar {
-        padding: 0.7rem 5%;
-        font-size: 0.9rem;
-      }
-
-      .top-bar a {
-        font-size: 0.95rem;
+      .hero {
+        margin-top: calc(70px + 72px); /* Adjusted for taller top + header */
+        padding: 4rem 5% 6rem;
+        min-height: 500px;
       }
     }
 
     @media (max-width: 480px) {
+      .top-bar {
+        padding: 1rem 5%;
+        font-size: 0.85rem;
+      }
+
+      header {
+        padding: 0.6rem 5%;
+      }
+
       nav a {
         margin: 0 0.4rem;
         font-size: 0.85rem;
@@ -385,14 +406,6 @@
         padding: 0.55rem 1rem;
         font-size: 0.85rem;
         min-width: 90px;
-      }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .logo img {
-        height: 35px;
       }
     }
   </style>
