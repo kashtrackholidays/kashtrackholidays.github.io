@@ -34,7 +34,7 @@
       text-size-adjust: 100%;
     }
 
-    /* Top bar – minimal height, no extra space */
+    /* Top bar – no shadow, no bottom border */
     .top-bar {
       position: fixed;
       top: 0;
@@ -50,7 +50,8 @@
       justify-content: space-between;
       align-items: center;
       z-index: 1200;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      box-shadow: none;             /* Removed shadow to eliminate line */
+      border-bottom: none;
     }
 
     .top-bar a {
@@ -63,10 +64,10 @@
       color: #facc15 !important;
     }
 
-    /* Navigation bar – flush against top bar (zero gap) */
+    /* Navigation bar – starts exactly at top-bar end */
     header {
       position: fixed;
-      top: 42px;                    /* Tight value – no visible gap on mobile */
+      top: 44px;                    /* Exact flush fit – no gap/line */
       left: 0;
       right: 0;
       width: 100%;
@@ -80,6 +81,7 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       flex-wrap: wrap;
       gap: 0.6rem;
+      border-top: none;             /* No top border */
     }
 
     .logo {
@@ -138,12 +140,11 @@
       background: #c2410c;
     }
 
-    /* Hero section – fixed splitting & button overlap */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(42px + 72px); /* Starts right below blue bar */
+      margin-top: calc(44px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -155,18 +156,13 @@
       overflow: hidden;
     }
 
-    .hero > div {
-      max-width: 100%;
-      width: 100%;
-    }
-
     .hero h1 {
       font-size: 4.5rem;
       margin-bottom: 1rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      word-break: keep-all;          /* No mid-word breaking */
+      word-break: keep-all;
       hyphens: none;
       line-height: 1.05;
     }
@@ -182,7 +178,7 @@
 
     .hero .btn-group {
       display: flex;
-      flex-direction: column;        /* Stack vertically on mobile */
+      flex-direction: column;
       align-items: center;
       gap: 1rem;
     }
@@ -208,7 +204,6 @@
       font-size: 2.8rem;
       color: var(--primary);
       margin-bottom: 1rem;
-      word-break: keep-all;
     }
 
     .subtitle {
@@ -263,7 +258,7 @@
       width: 100%;
     }
 
-    /* Modal styles */
+    /* Modal styles (unchanged) */
     .modal {
       display: none;
       position: fixed;
@@ -340,7 +335,7 @@
       background: #c2410c;
     }
 
-    /* Strong mobile fixes – no gap, no overlap, no splitting */
+    /* Mobile – zero gap, no overlap, no splitting */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.7rem 5%;
@@ -351,7 +346,7 @@
       }
 
       header {
-        top: 76px;                    /* Flush fit – no gap after top-bar */
+        top: 76px;                    /* Flush fit – no gap/line */
         padding: 0.7rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -402,14 +397,6 @@
       .btn {
         padding: 0.6rem 1.1rem;
         font-size: 0.9rem;
-      }
-
-      .section {
-        padding: 4rem 5% 3rem;
-      }
-
-      .title {
-        font-size: 2.2rem;
       }
     }
 
