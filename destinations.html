@@ -50,14 +50,16 @@
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
     }
 
-    .top-bar > div:first-child span {
-      margin-right: 1.3rem;
+    .top-bar .phones {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;           /* phones stay on one line */
+      gap: 1rem;
     }
 
     .top-bar a {
       color: white;
       text-decoration: none;
-      margin-left: 1rem;
     }
 
     /* Header (logo + nav) */
@@ -75,7 +77,7 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      flex-wrap: nowrap !important;
+      flex-wrap: nowrap;
       min-height: 60px;
     }
 
@@ -84,7 +86,7 @@
       align-items: center;
       font-size: 1.6rem;
       font-weight: 700;
-      white-space: nowrap !important;
+      white-space: nowrap;
       flex-shrink: 0;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -100,7 +102,7 @@
     nav {
       display: flex;
       align-items: center;
-      flex-wrap: nowrap !important;
+      flex-wrap: nowrap;
       gap: 0.8rem;
       overflow-x: auto;
       padding: 0.3rem 0;
@@ -113,8 +115,8 @@
       margin: 0 1.1rem;
       text-decoration: none;
       font-weight: 500;
-      white-space: nowrap !important;
-      flex-shrink: 0 !important;
+      white-space: nowrap;
+      flex-shrink: 0;
       font-size: 1rem;
     }
 
@@ -130,7 +132,7 @@
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
-      white-space: nowrap !important;
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
@@ -203,115 +205,36 @@
       width: 100%;
     }
 
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 1300;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 520px;
-      padding: 2.5rem 2rem;
-      position: relative;
-      max-height: 92vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      font-size: 2.2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #555;
-    }
-
-    .modal-content h2 {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 1.8rem;
-      font-size: 1.8rem;
-    }
-
-    .modal-content label {
-      display: block;
-      margin: 1.4rem 0 0.4rem;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .modal-content input,
-    .modal-content select,
-    .modal-content textarea {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.6rem 0 1.6rem 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    .modal-content button[type="submit"] {
-      width: 100%;
-      background: var(--accent);
-      color: white;
-      padding: 1.1rem;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      margin-top: 1.8rem;
-    }
-
-    .modal-content button[type="submit"]:hover {
-      background: #c2410c;
-    }
-
-    /* Mobile – extra strong anti-splitting */
+    /* Mobile – phones on one line, email on next line */
     @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.7rem 5%;
+        font-size: 0.9rem;
+      }
+
+      .top-bar .phones {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
       header {
-        top: 44px;
+        top: 78px;                    /* adjusted for taller top-bar on mobile */
         padding: 0.7rem 4%;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: nowrap !important;
       }
 
-      .logo {
-        font-size: 1.35rem;
-        white-space: nowrap !important;
-      }
-
-      nav {
-        flex-wrap: nowrap !important;
-        overflow-x: auto;
-        padding: 0.4rem 0;
+      main {
+        margin-top: calc(78px + 78px);
       }
 
       nav a {
         margin: 0 0.9rem;
         font-size: 0.9rem;
-        white-space: nowrap !important;
-        flex-shrink: 0 !important;
-      }
-
-      main {
-        margin-top: calc(44px + 78px);
       }
     }
 
@@ -319,28 +242,14 @@
       .top-bar {
         font-size: 0.85rem;
         padding: 0.6rem 4%;
-        flex-wrap: nowrap;
       }
 
       header {
-        top: 46px;
-        padding: 0.6rem 4%;
+        top: 80px;
       }
 
       .logo {
-        font-size: 1.25rem;
-      }
-
-      nav a {
-        margin: 0 0.7rem;
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 360px) {
-      nav a {
-        font-size: 0.8rem;
-        margin: 0 0.6rem;
+        font-size: 1.35rem;
       }
     }
   </style>
@@ -348,7 +257,7 @@
 <body>
 
 <div class="top-bar">
-  <div>
+  <div class="phones">
     <i class="fas fa-phone-alt"></i> +91 7051711732 | +91 7006807423
   </div>
   <div>
@@ -478,7 +387,6 @@
 </div>
 
 <script>
-  // Open modal on "Book Now" clicks
   document.querySelectorAll('.book-now-trigger').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -486,12 +394,10 @@
     });
   });
 
-  // Close modal when clicking outside
   document.getElementById('bookingModal').addEventListener('click', function(e) {
     if (e.target === this) this.style.display = 'none';
   });
 
-  // Calendar
   flatpickr("#travelDates", {
     mode: "range",
     dateFormat: "d-m-Y",
