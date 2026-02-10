@@ -71,10 +71,10 @@
       color: #facc15 !important;
     }
 
-    /* Navigation header – no overlap with top bar */
+    /* Navigation header – no gap between top-bar and this header */
     header {
       position: fixed;
-      top: 60px;                    /* Safe offset from top-bar height */
+      top: 45px;                    /* Exact height of top-bar (adjust if your top-bar height changes) */
       left: 0;
       right: 0;
       width: 100%;
@@ -156,12 +156,12 @@
       background: #c2410c;
     }
 
-    /* Hero section – no left/right overflow */
+    /* Hero – starts immediately below second header */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(60px + 72px); /* Matches header top value */
+      margin-top: calc(45px + 72px); /* Matches header top value */
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -359,7 +359,7 @@
       background: #c2410c;
     }
 
-    /* Mobile responsiveness */
+    /* Mobile adjustments – no gap between headers */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.8rem 5%;
@@ -370,7 +370,7 @@
       }
 
       header {
-        top: 90px;                    /* Safe offset when top-bar stacks */
+        top: 80px;                    /* Adjusted for stacked top-bar height */
         padding: 0.7rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -378,7 +378,7 @@
       }
 
       .hero {
-        margin-top: calc(90px + 72px);
+        margin-top: calc(80px + 72px); /* No gap below headers */
         padding: 4rem 5% 6rem;
         min-height: 500px;
         height: auto;
@@ -387,23 +387,10 @@
       .hero h1 {
         font-size: 2.8rem;
         letter-spacing: 2px;
-        line-height: 1.1;
       }
 
       .hero p {
         font-size: 1.1rem;
-        line-height: 1.5;
-      }
-
-      .hero .btn-group {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .hero .btn {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
       }
 
       nav {
@@ -422,28 +409,15 @@
         padding: 0.6rem 1.1rem;
         font-size: 0.9rem;
       }
-
-      .section {
-        padding: 4rem 5% 3rem;
-      }
-
-      .title {
-        font-size: 2.2rem;
-      }
     }
 
     @media (max-width: 480px) {
-      .top-bar {
-        padding: 1rem 5%;
-        font-size: 0.85rem;
-      }
-
       header {
-        top: 100px;
+        top: 90px;
       }
 
       .hero {
-        margin-top: calc(100px + 72px);
+        margin-top: calc(90px + 72px);
       }
 
       .hero h1 {
