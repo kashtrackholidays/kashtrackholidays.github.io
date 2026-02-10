@@ -63,10 +63,10 @@
       color: #facc15 !important;
     }
 
-    /* Navigation bar – flush against top bar (no gap) */
+    /* Navigation bar – flush against top bar (zero gap) */
     header {
       position: fixed;
-      top: 44px;                    /* Tight fit – no visible gap */
+      top: 42px;                    /* Tight value – no visible gap on mobile */
       left: 0;
       right: 0;
       width: 100%;
@@ -138,12 +138,12 @@
       background: #c2410c;
     }
 
-    /* Hero – no overflow, no button overlap, no title splitting */
+    /* Hero section – fixed splitting & button overlap */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(44px + 72px);
+      margin-top: calc(42px + 72px); /* Starts right below blue bar */
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -164,9 +164,9 @@
       font-size: 4.5rem;
       margin-bottom: 1rem;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      word-break: keep-all;     /* Prevent mid-word break */
+      word-break: keep-all;          /* No mid-word breaking */
       hyphens: none;
       line-height: 1.05;
     }
@@ -182,7 +182,7 @@
 
     .hero .btn-group {
       display: flex;
-      flex-direction: column;    /* Stack buttons vertically on mobile */
+      flex-direction: column;        /* Stack vertically on mobile */
       align-items: center;
       gap: 1rem;
     }
@@ -263,7 +263,7 @@
       width: 100%;
     }
 
-    /* Modal styles (unchanged) */
+    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -340,7 +340,7 @@
       background: #c2410c;
     }
 
-    /* Strong mobile fixes */
+    /* Strong mobile fixes – no gap, no overlap, no splitting */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.7rem 5%;
@@ -351,7 +351,7 @@
       }
 
       header {
-        top: 76px;                    /* Flush fit after top-bar stacks */
+        top: 76px;                    /* Flush fit – no gap after top-bar */
         padding: 0.7rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -365,8 +365,8 @@
       }
 
       .hero h1 {
-        font-size: 2.8rem;
-        letter-spacing: 2px;
+        font-size: 2.6rem;
+        letter-spacing: 1px;
         line-height: 1.1;
         word-break: keep-all;
         hyphens: none;
