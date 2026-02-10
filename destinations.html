@@ -50,16 +50,14 @@
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
     }
 
-    .top-bar .phones {
-      display: flex;
-      align-items: center;
-      flex-wrap: nowrap;           /* phones stay on one line */
-      gap: 1rem;
+    .top-bar > div:first-child span {
+      margin-right: 1.3rem;
     }
 
     .top-bar a {
       color: white;
       text-decoration: none;
+      margin-left: 1rem;
     }
 
     /* Header (logo + nav) */
@@ -86,7 +84,7 @@
       align-items: center;
       font-size: 1.6rem;
       font-weight: 700;
-      white-space: nowrap;
+      white-space: nowrap !important;
       flex-shrink: 0;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -102,7 +100,7 @@
     nav {
       display: flex;
       align-items: center;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap !important;
       gap: 0.8rem;
       overflow-x: auto;
       padding: 0.3rem 0;
@@ -115,8 +113,8 @@
       margin: 0 1.1rem;
       text-decoration: none;
       font-weight: 500;
-      white-space: nowrap;
-      flex-shrink: 0;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
       font-size: 1rem;
     }
 
@@ -205,36 +203,48 @@
       width: 100%;
     }
 
-    /* Mobile – phones on one line, email on next line */
+    /* Mobile layout: logo + name on first line, menu on second line */
     @media (max-width: 768px) {
+      header {
+        top: 44px;
+        padding: 0.8rem 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        justify-content: flex-start;
+      }
+
+      .logo {
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 1.4rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+      }
+
+      nav a {
+        margin: 0 1rem 0 0;
+        font-size: 0.9rem;
+      }
+
+      main {
+        margin-top: calc(44px + 110px); /* taller header on mobile */
+      }
+
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
         padding: 0.7rem 5%;
-        font-size: 0.9rem;
       }
 
       .top-bar .phones {
         width: 100%;
         justify-content: flex-start;
-      }
-
-      header {
-        top: 78px;                    /* adjusted for taller top-bar on mobile */
-        padding: 0.7rem 4%;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      main {
-        margin-top: calc(78px + 78px);
-      }
-
-      nav a {
-        margin: 0 0.9rem;
-        font-size: 0.9rem;
       }
     }
 
@@ -245,11 +255,20 @@
       }
 
       header {
-        top: 80px;
+        top: 68px; /* adjusted for stacked top-bar + header */
       }
 
       .logo {
-        font-size: 1.35rem;
+        font-size: 1.3rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+        margin: 0 0.8rem 0 0;
+      }
+
+      main {
+        margin-top: calc(68px + 110px);
       }
     }
   </style>
