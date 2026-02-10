@@ -34,7 +34,7 @@
       text-size-adjust: 100%;
     }
 
-    /* Top bar – no shadow, matching border to kill any white seam/line */
+    /* Top bar – minimal height, GPU forced, matching border to eliminate seam */
     .top-bar {
       position: fixed;
       top: 0;
@@ -52,8 +52,9 @@
       z-index: 1200;
       box-shadow: none;
       border: 0;
-      border-bottom: 1px solid #111827;  /* blends perfectly with background – no visible line */
-      transform: translateZ(0);           /* forces GPU rendering in Chrome */
+      border-bottom: 1px solid #111827;     /* exact match – hides rendering seam */
+      transform: translateZ(0);              /* forces GPU – fixes Chrome sub-pixel line */
+      will-change: transform;                /* extra hint for Chrome */
     }
 
     .top-bar a {
@@ -66,10 +67,10 @@
       color: #facc15 !important;
     }
 
-    /* Navigation bar – flush against top bar (no gap, no line) */
+    /* Blue header – slight overlap + GPU force to kill any remaining line */
     header {
       position: fixed;
-      top: 42px;                        /* tight value – no gap/line in Chrome */
+      top: 41px;                             /* 1px overlap hides seam completely in Chrome */
       left: 0;
       right: 0;
       width: 100%;
@@ -85,7 +86,8 @@
       gap: 0.6rem;
       border: 0;
       border-top: none;
-      transform: translateZ(0);           /* also helps on header */
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     .logo {
@@ -148,7 +150,7 @@
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(42px + 72px);
+      margin-top: calc(41px + 72px);          /* adjusted for 1px overlap */
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
       color: white;
@@ -262,7 +264,7 @@
       width: 100%;
     }
 
-    /* Modal styles */
+    /* Modal styles (unchanged) */
     .modal {
       display: none;
       position: fixed;
@@ -339,7 +341,7 @@
       background: #c2410c;
     }
 
-    /* Mobile adjustments */
+    /* Mobile – tight fit */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.6rem 5%;
@@ -350,7 +352,7 @@
       }
 
       header {
-        top: 72px;
+        top: 71px;                      /* adjusted for mobile stacking */
         padding: 0.6rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -358,7 +360,7 @@
       }
 
       .hero {
-        margin-top: calc(72px + 72px);
+        margin-top: calc(71px + 72px);
         padding: 4rem 5% 6rem;
         min-height: 500px;
       }
@@ -382,11 +384,11 @@
 
     @media (max-width: 480px) {
       header {
-        top: 74px;
+        top: 73px;
       }
 
       .hero {
-        margin-top: calc(74px + 72px);
+        margin-top: calc(73px + 72px);
       }
 
       .hero h1 {
