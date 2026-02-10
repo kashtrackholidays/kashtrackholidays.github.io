@@ -38,21 +38,21 @@
       color: #333;
     }
 
-    /* Background image only for top bar + header + hero */
+    /* Shared background image for top bar + header + hero */
     .top-bar,
     header,
     .hero {
       background: url('images/hero-bg.jpg') center/cover no-repeat fixed;
     }
 
-    /* Top dark header – grey tint overlay */
+    /* Dark top bar – image visible + grey tint overlay */
     .top-bar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       width: 100%;
-      background: rgba(17, 24, 39, 0.7);      /* dark grey tint overlay */
+      background: rgba(17, 24, 39, 0.7);      /* grey tint overlay */
       color: white;
       padding: 0.6rem 5%;
       font-size: 0.95rem;
@@ -73,14 +73,14 @@
       color: #facc15 !important;
     }
 
-    /* Blue navigation header – blue tint overlay */
+    /* Blue navigation bar – image visible + blue tint overlay */
     header {
       position: fixed;
       top: 42px;
       left: 0;
       right: 0;
       width: 100%;
-      background: rgba(30, 58, 138, 0.75);    /* blue tint (matches --primary) */
+      background: rgba(30, 58, 138, 0.75);    /* blue tint overlay */
       color: white;
       z-index: 1100;
       padding: 0.8rem 5%;
@@ -147,7 +147,7 @@
       background: #c2410c;
     }
 
-    /* Hero – inherits image + dark overlay */
+    /* Hero section – image + dark overlay */
     .hero {
       width: 100%;
       min-height: 620px;
@@ -201,7 +201,7 @@
       padding: 6rem 5% 4rem;
       max-width: 1400px;
       margin: 0 auto;
-      background: var(--light-bg); /* plain light background */
+      background: var(--light-bg); /* light grey – no image */
     }
 
     .title {
