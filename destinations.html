@@ -63,7 +63,7 @@
     /* Header (logo + nav) */
     header {
       position: fixed;
-      top: 44px;                    /* reliable value for most mobile devices */
+      top: 44px;
       left: 0;
       right: 0;
       width: 100%;
@@ -75,8 +75,8 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      flex-wrap: nowrap;            /* ← prevents header from wrapping */
-      gap: 1rem;
+      flex-wrap: nowrap !important;
+      min-height: 60px;
     }
 
     .logo {
@@ -84,22 +84,27 @@
       align-items: center;
       font-size: 1.6rem;
       font-weight: 700;
-      white-space: nowrap;          /* ← prevents "Kash Track Holiday" from splitting */
+      white-space: nowrap !important;
       flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 45%;
     }
 
     .logo img {
       height: 48px;
       margin-right: 1rem;
+      flex-shrink: 0;
     }
 
     nav {
       display: flex;
       align-items: center;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap !important;
       gap: 0.8rem;
       overflow-x: auto;
       padding: 0.3rem 0;
+      -webkit-overflow-scrolling: touch;
       flex-shrink: 0;
     }
 
@@ -108,8 +113,8 @@
       margin: 0 1.1rem;
       text-decoration: none;
       font-weight: 500;
-      white-space: nowrap;           /* ← prevents links from splitting */
-      flex-shrink: 0;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
       font-size: 1rem;
     }
 
@@ -125,7 +130,7 @@
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
-      white-space: nowrap;
+      white-space: nowrap !important;
       flex-shrink: 0;
     }
 
@@ -275,40 +280,38 @@
       background: #c2410c;
     }
 
-    /* Mobile – prevent text splitting */
+    /* Mobile – extra strong anti-splitting */
     @media (max-width: 768px) {
       header {
         top: 44px;
         padding: 0.7rem 4%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: nowrap !important;
       }
 
       .logo {
         font-size: 1.35rem;
+        white-space: nowrap !important;
       }
 
       nav {
-        width: 100%;
-        justify-content: flex-start;
-        padding: 0.4rem 0;
+        flex-wrap: nowrap !important;
         overflow-x: auto;
+        padding: 0.4rem 0;
       }
 
       nav a {
         margin: 0 0.9rem;
         font-size: 0.9rem;
-        white-space: nowrap;
-        flex-shrink: 0;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
       }
 
       main {
         margin-top: calc(44px + 78px);
-      }
-
-      .hero h1 {
-        font-size: 2.8rem;
       }
     }
 
@@ -316,19 +319,28 @@
       .top-bar {
         font-size: 0.85rem;
         padding: 0.6rem 4%;
+        flex-wrap: nowrap;
       }
 
       header {
         top: 46px;
+        padding: 0.6rem 4%;
+      }
+
+      .logo {
+        font-size: 1.25rem;
       }
 
       nav a {
         margin: 0 0.7rem;
         font-size: 0.85rem;
       }
+    }
 
-      .logo {
-        font-size: 1.25rem;
+    @media (max-width: 360px) {
+      nav a {
+        font-size: 0.8rem;
+        margin: 0 0.6rem;
       }
     }
   </style>
