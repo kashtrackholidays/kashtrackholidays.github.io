@@ -17,7 +17,6 @@
       --accent: #ea580c;
     }
 
-    /* Prevent horizontal overflow globally */
     * {
       box-sizing: border-box;
     }
@@ -26,11 +25,13 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;           /* ← Key fix: hides any horizontal scrollbar */
+      overflow-x: hidden;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     .top-bar {
@@ -60,6 +61,7 @@
       font-size: 1.05rem;
       font-weight: 400;
       transition: color 0.2s;
+      word-break: break-all;
     }
 
     .top-bar a:hover {
@@ -121,8 +123,8 @@
 
     .hero {
       width: 100%;
-      height: calc(100vh - 38px - 72px);
       min-height: 620px;
+      height: auto;
       margin-top: calc(38px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   url('images/hero-bg.jpg') center/cover no-repeat;
@@ -131,7 +133,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0 5%;
+      padding: 4rem 5% 6rem;
       overflow: hidden;
     }
 
@@ -154,6 +156,8 @@
     .section {
       width: 100%;
       padding: 6rem 5% 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .title {
@@ -175,8 +179,6 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .card {
@@ -292,6 +294,93 @@
 
     .modal-content button[type="submit"]:hover {
       background: #c2410c;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 4rem 5% 6rem;
+        min-height: 500px;
+        height: auto;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        letter-spacing: 2px;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 4rem 5% 3rem;
+      }
+
+      .title {
+        font-size: 2.2rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .grid {
+        gap: 1.5rem;
+      }
+
+      .card img {
+        height: 180px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0.5rem 0.8rem;
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .top-bar {
+        font-size: 0.9rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.8rem 5%;
+      }
+
+      footer {
+        padding: 3rem 5% 2rem;
+      }
+    }
+
+    /* Extra safety for very small screens */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .card img {
+        height: 160px;
+      }
     }
   </style>
 </head>
