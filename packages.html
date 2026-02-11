@@ -30,6 +30,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
     }
 
     /* Top contact bar */
@@ -144,13 +145,12 @@
       margin-top: calc(44px + 78px);
       padding-top: 2rem;
       width: 100%;
+      min-height: calc(100vh - 122px); /* ensures content fills screen */
     }
 
     .section {
       padding: 6rem 5% 4rem;
       width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .title {
@@ -212,7 +212,7 @@
       width: 100%;
     }
 
-    /* Modal – centered */
+    /* Modal – fixed centering */
     .modal {
       display: none;
       position: fixed;
@@ -493,6 +493,7 @@
 </div>
 
 <script>
+  // Open modal on ALL "Book Now" buttons
   document.querySelectorAll('.book-now-trigger').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -500,10 +501,14 @@
     });
   });
 
+  // Close modal when clicking outside content
   document.getElementById('bookingModal').addEventListener('click', function(e) {
-    if (e.target === this) this.style.display = 'none';
+    if (e.target === this) {
+      this.style.display = 'none';
+    }
   });
 
+  // Calendar
   flatpickr("#travelDates", {
     mode: "range",
     dateFormat: "d-m-Y",
@@ -526,3 +531,4 @@
 
 </body>
 </html>
+
