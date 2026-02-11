@@ -87,14 +87,15 @@
       font-size: 1.6rem;
       font-weight: 700;
       white-space: nowrap !important;
-      flex-shrink: 1;               /* ← key: allow shrinking instead of clipping */
+      flex-shrink: 1;
       min-width: 0;
-      overflow: visible !important; /* prevent hidden text */
+      overflow: visible !important;
+      flex-grow: 1;
     }
 
     .logo img {
       height: 50px;
-      margin-right: 1rem;
+      margin-right: 0.8rem;
       flex-shrink: 0;
     }
 
@@ -238,7 +239,7 @@
       .logo {
         width: 100%;
         justify-content: flex-start;
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         white-space: nowrap !important;
         overflow: visible !important;
       }
@@ -270,7 +271,7 @@
       }
 
       .logo {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
       }
 
       nav a {
@@ -281,7 +282,7 @@
 
     @media (max-width: 360px) {
       .logo {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
 
       nav a {
