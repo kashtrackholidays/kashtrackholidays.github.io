@@ -212,10 +212,10 @@
       width: 100%;
     }
 
-    /* Fixed Modal – centered properly */
+    /* Modal – centered */
     .modal {
       display: none;
-      position: fixed !important;
+      position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.7);
       z-index: 1300;
@@ -224,8 +224,7 @@
       padding: 1rem;
     }
 
-    .modal[style*="display: flex"],
-    .modal.show {
+    .modal[style*="display: flex"] {
       display: flex !important;
     }
 
@@ -410,4 +409,120 @@
         <img src="images/gulmarg-destination.jpg" alt="Amazing Kashmir">
         <div class="card-body">
           <h3>Amazing Kashmir</h3>
-          <p>6 Days /
+          <p>6 Days / 5 Nights – Srinagar, Gulmarg, Pahalgam, Sonamarg</p>
+          <div class="price">₹16,499 <small>/ person</small></div>
+          <a href="#" class="btn book-now-trigger" style="margin-top:1rem; display:block;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/ladakh-tour.jpg" alt="Ladakh Adventure">
+        <div class="card-body">
+          <h3>Ladakh Adventure</h3>
+          <p>6 Days / 5 Nights – Leh, Nubra, Pangong</p>
+          <div class="price">₹21,000 <small>/ person</small></div>
+          <a href="#" class="btn book-now-trigger" style="margin-top:1rem; display:block;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/vaishno-devi-temple katra.jpg" alt="Jammu Tour">
+        <div class="card-body">
+          <h3>Jammu Tour</h3> 
+          <p>3 Days / 2 Nights – Jammu Tour</p>
+          <div class="price">₹9,999 <small>/ person</small></div>
+          <a href="#" class="btn book-now-trigger" style="margin-top:1rem; display:block;">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin-bottom:1rem; font-size:1.1rem; font-weight:600;">Kash Track Holidays</p>
+    <p>2ND FLOOR KHAN COMPLEX, HMT SALTANGE NATIONAL HIGHWAY<br>SRINAGAR, JAMMU AND KASHMIR PIN CODE 190012</p>
+    <p style="margin:1.2rem 0;">
+      Email: <a href="mailto:kashtrackholidays786@gmail.com" style="color:#e74c3c;">kashtrackholidays786@gmail.com</a><br>
+      Contact: +91 7051711732 | +91 7006807423
+    </p>
+    <div class="social">
+      <a href="https://www.instagram.com/kashtrackholidays" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/kashtrackholiday" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p style="margin-top:2rem; opacity:0.8;">© 2026 Kash Track Holidays. All Rights Reserved.</p>
+  </footer>
+</main>
+
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="document.getElementById('bookingModal').style.display='none'">×</button>
+
+    <h2>Book Your Kashmir Tour</h2>
+
+    <form action="https://formspree.io/f/mlgwrvla" method="POST">
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" placeholder="Full Name *" required>
+
+      <label for="phone">Phone / WhatsApp *</label>
+      <input type="tel" id="phone" name="phone" placeholder="Phone / WhatsApp *" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Email Address">
+
+      <label for="package">Select Package</label>
+      <select id="package" name="package" required>
+        <option value="" disabled selected>Select Package</option>
+        <option value="5 Nights 6 Days">5 Nights 6 Days – ₹16,499</option>
+        <option value="4 Nights 5 Days">4 Nights 5 Days – ₹13,999</option>
+        <option value="2 Nights 3 Days">2 Nights 3 Days – ₹8,350</option>
+        <option value="Custom Tour">Custom Tour</option>
+      </select>
+
+      <label for="travelDates">Travel Dates (From → To) *</label>
+      <input type="text" id="travelDates" name="dates" placeholder="Click to select From → To dates *" required>
+
+      <label for="persons">Number of Persons *</label>
+      <input type="number" id="persons" name="persons" placeholder="Number of Persons *" min="1" required>
+
+      <label for="message">Any special requests or questions...</label>
+      <textarea id="message" name="message" placeholder="Any special requests or questions..." rows="4"></textarea>
+
+      <button type="submit">Submit Booking Request</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.book-now-trigger').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('bookingModal').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+
+  flatpickr("#travelDates", {
+    mode: "range",
+    dateFormat: "d-m-Y",
+    minDate: "today",
+    altInput: true,
+    altFormat: "F j, Y",
+    conjunction: " → ",
+    showMonths: 2,
+    static: false,
+    appendTo: document.body,
+    position: "auto",
+    onOpen: function(selectedDates, dateStr, instance) {
+      const rect = this.input.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight - 320) {
+        instance.calendarContainer.style.top = (rect.top - instance.calendarContainer.offsetHeight - 10) + "px";
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
