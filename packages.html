@@ -7,11 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Flatpickr for calendar -->
+  <!-- Flatpickr -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-  <link rel="stylesheet" href="style.css">
 
   <style>
     :root {
@@ -19,7 +17,6 @@
       --accent: #ea580c;
     }
 
-    /* Global overflow & box-sizing fix */
     * {
       box-sizing: border-box;
     }
@@ -28,7 +25,7 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;           /* ← Prevents horizontal scroll */
+      overflow-x: hidden;
     }
 
     body {
@@ -53,31 +50,35 @@
       box-shadow: 0 1px 6px rgba(0,0,0,0.25);
     }
 
-    .top-bar > div:first-child span {
-      margin-right: 1.4rem;
+    .top-bar .phones {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 1rem;
     }
 
     .top-bar a {
       color: white;
       text-decoration: none;
-      margin-left: 1.2rem;
     }
 
     /* Header */
     header {
       position: fixed;
-      top: 38px;
+      top: 44px;
       left: 0;
       right: 0;
       width: 100%;
       background: var(--primary);
       color: white;
       z-index: 1100;
-      padding: 1rem 5%;
+      padding: 0.9rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      flex-wrap: nowrap;
+      min-height: 60px;
     }
 
     .logo {
@@ -85,18 +86,38 @@
       align-items: center;
       font-size: 1.6rem;
       font-weight: 700;
+      white-space: nowrap !important;
+      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 45%;
     }
 
     .logo img {
       height: 50px;
       margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap !important;
+      gap: 0.8rem;
+      overflow-x: auto;
+      padding: 0.3rem 0;
+      -webkit-overflow-scrolling: touch;
+      flex-shrink: 0;
     }
 
     nav a {
       color: white;
-      margin: 0 1.2rem;
+      margin: 0 1.1rem;
       text-decoration: none;
       font-weight: 500;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      font-size: 1rem;
     }
 
     nav a:hover {
@@ -111,6 +132,8 @@
       text-decoration: none;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .btn:hover {
@@ -118,7 +141,7 @@
     }
 
     main {
-      margin-top: calc(38px + 78px);
+      margin-top: calc(44px + 78px);
       padding-top: 2rem;
       width: 100%;
     }
@@ -126,8 +149,8 @@
     .section {
       padding: 6rem 5% 4rem;
       width: 100%;
-      max-width: 1400px;           /* Prevents excessive widening on large screens */
-      margin: 0 auto;              /* Centers content */
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .title {
@@ -265,12 +288,78 @@
     .modal-content button[type="submit"]:hover {
       background: #c2410c;
     }
+
+    /* Mobile layout */
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.7rem 5%;
+        font-size: 0.9rem;
+      }
+
+      .top-bar .phones {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      header {
+        top: 78px;                    /* taller due to stacked top-bar */
+        padding: 0.8rem 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        justify-content: flex-start;
+      }
+
+      .logo {
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 1.4rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+      }
+
+      nav a {
+        margin: 0 1rem 0 0;
+        font-size: 0.9rem;
+      }
+
+      main {
+        margin-top: calc(78px + 110px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-bar {
+        font-size: 0.85rem;
+        padding: 0.6rem 4%;
+      }
+
+      header {
+        top: 80px;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      nav a {
+        margin: 0 0.8rem 0 0;
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <div>
+  <div class="phones">
     <i class="fas fa-phone-alt"></i> +91 7051711732 | +91 7006807423
   </div>
   <div>
@@ -387,7 +476,6 @@
 </div>
 
 <script>
-  // Open modal
   document.querySelectorAll('.book-now-trigger').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -395,12 +483,10 @@
     });
   });
 
-  // Close modal when clicking outside
   document.getElementById('bookingModal').addEventListener('click', function(e) {
     if (e.target === this) this.style.display = 'none';
   });
 
-  // Calendar
   flatpickr("#travelDates", {
     mode: "range",
     dateFormat: "d-m-Y",
