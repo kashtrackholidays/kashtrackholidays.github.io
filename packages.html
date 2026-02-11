@@ -212,6 +212,87 @@
       width: 100%;
     }
 
+    /* Modal – centered properly */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1300;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal[style*="display: flex"] {
+      display: flex !important;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
+    }
+
+    .modal-content label {
+      display: block;
+      margin: 1.4rem 0 0.4rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.6rem 0 1.6rem 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .modal-content button[type="submit"] {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1.8rem;
+    }
+
+    .modal-content button[type="submit"]:hover {
+      background: #c2410c;
+    }
+
     /* Mobile layout */
     @media (max-width: 768px) {
       .top-bar {
@@ -242,8 +323,6 @@
         font-size: 1.35rem;
         white-space: nowrap !important;
         overflow: visible !important;
-        flex-shrink: 1;
-        min-width: 0;
       }
 
       nav {
