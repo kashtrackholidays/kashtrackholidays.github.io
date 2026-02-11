@@ -30,6 +30,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
     }
 
     /* Top contact bar */
@@ -50,17 +51,19 @@
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
     }
 
-    .top-bar > div:first-child span {
-      margin-right: 1.3rem;
+    .top-bar .phones {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 1rem;
     }
 
     .top-bar a {
       color: white;
       text-decoration: none;
-      margin-left: 1rem;
     }
 
-    /* Header (logo + nav) */
+    /* Header */
     header {
       position: fixed;
       top: 44px;
@@ -85,10 +88,10 @@
       font-size: 1.6rem;
       font-weight: 700;
       white-space: nowrap !important;
-      flex-shrink: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 45%;
+      overflow: visible !important;
+      flex-shrink: 1;
+      min-width: 0;
+      flex-grow: 1;
     }
 
     .logo img {
@@ -142,13 +145,12 @@
       margin-top: calc(44px + 78px);
       padding-top: 2rem;
       width: 100%;
+      min-height: calc(100vh - 122px);
     }
 
     .section {
       padding: 6rem 5% 4rem;
       width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .title {
@@ -203,10 +205,104 @@
       width: 100%;
     }
 
-    /* Mobile layout: logo + name on first line, menu on second line */
+    /* Modal – centered properly */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1300;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 1rem;
+    }
+
+    .modal[style*="display: flex"] {
+      display: flex !important;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 2.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-content h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
+    }
+
+    .modal-content label {
+      display: block;
+      margin: 1.4rem 0 0.4rem;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.6rem 0 1.6rem 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .modal-content button[type="submit"] {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1.8rem;
+    }
+
+    .modal-content button[type="submit"]:hover {
+      background: #c2410c;
+    }
+
+    /* Mobile layout */
     @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.7rem 5%;
+        font-size: 0.9rem;
+      }
+
+      .top-bar .phones {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
       header {
-        top: 44px;
+        top: 78px;
         padding: 0.8rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -217,7 +313,9 @@
       .logo {
         width: 100%;
         justify-content: flex-start;
-        font-size: 1.4rem;
+        font-size: 1.35rem;
+        white-space: nowrap !important;
+        overflow: visible !important;
       }
 
       nav {
@@ -232,19 +330,7 @@
       }
 
       main {
-        margin-top: calc(44px + 110px); /* taller header on mobile */
-      }
-
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding: 0.7rem 5%;
-      }
-
-      .top-bar .phones {
-        width: 100%;
-        justify-content: flex-start;
+        margin-top: calc(78px + 110px);
       }
     }
 
@@ -255,20 +341,27 @@
       }
 
       header {
-        top: 68px; /* adjusted for stacked top-bar + header */
+        top: 80px;
       }
 
       .logo {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
       }
 
       nav a {
-        font-size: 0.85rem;
         margin: 0 0.8rem 0 0;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .logo {
+        font-size: 1.2rem;
       }
 
-      main {
-        margin-top: calc(68px + 110px);
+      nav a {
+        font-size: 0.8rem;
+        margin-right: 0.6rem;
       }
     }
   </style>
@@ -406,6 +499,7 @@
 </div>
 
 <script>
+  // Open modal on Book Now clicks
   document.querySelectorAll('.book-now-trigger').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -413,8 +507,11 @@
     });
   });
 
+  // Close modal when clicking outside
   document.getElementById('bookingModal').addEventListener('click', function(e) {
-    if (e.target === this) this.style.display = 'none';
+    if (e.target === this) {
+      this.style.display = 'none';
+    }
   });
 
   flatpickr("#travelDates", {
