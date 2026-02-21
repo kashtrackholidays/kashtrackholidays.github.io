@@ -33,7 +33,7 @@
       min-height: 100vh;
     }
 
-    /* Top contact bar */
+    /* Top contact bar – minimized height, no gap */
     .top-bar {
       position: fixed;
       top: 0;
@@ -42,20 +42,54 @@
       width: 100%;
       background: #111827;
       color: white;
-      padding: 0.55rem 5%;
-      font-size: 0.95rem;
+      padding: 0.5rem 5% 0.45rem;
+      font-size: 0.9rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       z-index: 1200;
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      gap: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .top-bar .phones-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      white-space: nowrap;
     }
 
     .top-bar .phones {
       display: flex;
       align-items: center;
-      flex-wrap: nowrap;
-      gap: 1rem;
+      gap: 0.7rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .top-bar .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .top-bar .social-icons a {
+      color: white;
+      font-size: 1.35rem;
+      transition: all 0.3s ease;
+    }
+
+    .top-bar .social-icons a:hover {
+      color: #facc15;
+      transform: scale(1.2);
+    }
+
+    .top-bar .email-line {
+      font-size: 0.85rem;
+      width: 100%;
     }
 
     .top-bar a {
@@ -63,10 +97,10 @@
       text-decoration: none;
     }
 
-    /* Header */
+    /* Header – placed exactly below top bar */
     header {
       position: fixed;
-      top: 44px;
+      top: 62px; /* matched exactly to top-bar height */
       left: 0;
       right: 0;
       width: 100%;
@@ -142,7 +176,7 @@
     }
 
     main {
-      margin-top: calc(44px + 78px);
+      margin-top: calc(62px + 78px); /* adjusted to start right below header */
       padding-top: 2rem;
       width: 100%;
       min-height: calc(100vh - 122px);
@@ -286,23 +320,29 @@
       background: #c2410c;
     }
 
-    /* Mobile layout */
+    /* Mobile layout – icons shown better, no scattering */
     @media (max-width: 768px) {
       .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding: 0.7rem 5%;
+        padding: 0.55rem 4% 0.5rem;
         font-size: 0.9rem;
+        gap: 0.4rem;
       }
 
-      .top-bar .phones {
-        width: 100%;
-        justify-content: flex-start;
+      .top-bar .phones-line {
+        font-size: 0.9rem;
+        gap: 0.7rem;
+      }
+
+      .top-bar .social-icons a {
+        font-size: 1.3rem;
+      }
+
+      .top-bar .email-line {
+        font-size: 0.85rem;
       }
 
       header {
-        top: 78px;
+        top: 62px;
         padding: 0.8rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -330,18 +370,18 @@
       }
 
       main {
-        margin-top: calc(78px + 110px);
+        margin-top: calc(62px + 110px);
       }
     }
 
     @media (max-width: 480px) {
       .top-bar {
         font-size: 0.85rem;
-        padding: 0.6rem 4%;
+        padding: 0.5rem 4% 0.45rem;
       }
 
       header {
-        top: 80px;
+        top: 62px;
       }
 
       .logo {
@@ -369,10 +409,21 @@
 <body>
 
 <div class="top-bar">
-  <div class="phones">
-    <i class="fas fa-phone-alt"></i> +91 7051711732 | +91 7006807423
+  <div class="phones-line">
+    <div class="phones">
+      <i class="fas fa-phone-alt"></i> +91 7051711732 | +91 7006807423
+    </div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/kashtrackholidays" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/kashtrackholiday" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
   </div>
-  <div>
+
+  <div class="email-line">
     <a href="mailto:kashtrackholidays786@gmail.com">
       <i class="fas fa-envelope"></i> kashtrackholidays786@gmail.com
     </a>
@@ -399,19 +450,90 @@
     <p class="subtitle">Explore the paradise of Kashmir & Ladakh</p>
     <div class="grid">
       <div class="card">
-        <img src="images/dal-lake.jpg" alt="Dal Lake">
+        <img src="images/Shalimar.jpg" alt="Shalimar">
+        <div class="card-body">
+          <h3>Srinagar</h3>
+          <p>The Bagh was built by Mughal Emperor Jahangir for his wife Noor Jahan, in 1619. The Bagh is considered the high point of Mughal horticulture. It is now a public park Srinagar.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/dal-lake-destination.jpg" alt="Dal Lake">
         <div class="card-body">
           <h3>Dal Lake</h3>
-          <p>Iconic shikara rides, houseboats, Mughal gardens</p>
+          <p>The Jewel in the Crown of Kashmir is a 18 sq km urban lake in Srinagar known for its iconic houseboats Shikara boat rides and vibrant floating veg. market.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Shankaracharya.jpg" alt="Shankaracharya">
+        <div class="card-body">
+          <h3>Shankaracharya</h3>
+          <p>Shankaracharya Temple or Jyeshteshwara Temple is a Hindu temple situated on top of the Zabarwan Range in Srinagar in the Kashmir Valley of the union territory of J&k.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Bangus valley.jpg" alt="Bangus valley">
+        <div class="card-body">
+          <h3>Bangus valley</h3>
+          <p>Bangus valley is an offbeat place that offers you some mesmerizing beautiful landscapes, mountain peaks, meadows and water streams.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/aru-valley.jpg" alt="Aru Valley">
+        <div class="card-body">
+          <h3>Aru Valley</h3>
+          <p>Aru Valley is famous for its stunning natural beauty, featuring lush meadows, snow-capped peaks, and pristine streams, making it a paradise for nature lovers & photography enthusiasts.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/BETAAB VALLEY.jpg" alt="BETAAB VALLEY">
+        <div class="card-body">
+          <h3>Pahalgam, Betaab Valley</h3>
+          <p>Betaab Valley in Kashmir is famous for its breathtaking natural beauty, including lush green meadows, snow-capped mountains, and the Lidder River.</p>
         </div>
       </div>
       <div class="card">
         <img src="images/gulmarg-destination.jpg" alt="Gulmarg">
         <div class="card-body">
           <h3>Gulmarg</h3>
-          <p>Highest golf course, gondola, winter sports</p>
+          <p>Gulmarg Kashmir is known as the Meadow of Flowers offering stunning Himalayan views alpine and vibrant wildflower meadowsparticularly known for lupine blooms.</p>
         </div>
       </div>
+      <div class="card">
+        <img src="images/Gandola.jpg" alt="Gandola">
+        <div class="card-body">
+          <h3>Gandola, Gulmarg, Kashmir</h3>
+          <p>One of the main attractions in Gulmarg is the Gulmarg Gondola, the Highest Cable Car in the world. The 1st phase of the Gondola takes tourists to the height of 8030ft.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Doodhpathri.jpg" alt="Doodhpathri">
+        <div class="card-body">
+          <h3>Doodhpathri</h3>
+          <p>Doodhpathri, known as the Valley of Milk is a stunning lesser-known hill station in Jammu and Kashmir’s Budgam district, situated at 8,957 feet.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Gurez Valley.jpg" alt="Gurez Valley">
+        <div class="card-body">
+          <h3>Gurez Valley</h3>
+          <p>Gurez Valley, located in J&k Bandipore ,is a remote, scenic Himalayan region known for the Kishanganga River, snow-capped peaks  and the iconic Habba Khatoon mountain.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/sonamarg2.jpg" alt="Sonamarg">
+        <div class="card-body">
+          <h3>Sonamarg</h3>
+          <p>Sonamarg, known as the Meadow of Gold, is a breathtaking hill station in J&kit serves as a gateway to Ladakh, featuring snow-capped peaks, the Sindh River, and the stunn</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Dal-Lake Houseboat View.jpg" alt="Dal-Lake Houseboat View">
+        <div class="card-body">
+          <h3>Dal-Lake Houseboat</h3>
+          <p>Dal-Lake Houseboat View, Srinagar</p>
+        </div>
+      </div>
+      
       <div class="card">
         <img src="images/pahalgam-destination.jpg" alt="Pahalgam">
         <div class="card-body">
@@ -419,13 +541,7 @@
           <p>Betaab Valley, Aru, Lidder River</p>
         </div>
       </div>
-      <div class="card">
-        <img src="images/sonamarg1.jpg" alt="Sonamarg">
-        <div class="card-body">
-          <h3>Sonamarg</h3>
-          <p>Thajiwas Glacier, trekking, landscapes</p>
-        </div>
-      </div>
+      
       <div class="card">
         <img src="images/shanti-stupa-1.jpg" alt="Ladakh">
         <div class="card-body">
