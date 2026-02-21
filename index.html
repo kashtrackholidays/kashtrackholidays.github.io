@@ -69,7 +69,7 @@
       line-height: 65px;
     }
 
-    /* Top bar – mobile: phones 1 line, email 2nd line, icons 3rd line */
+    /* Top bar */
     .top-bar {
       position: fixed;
       top: 0;
@@ -119,8 +119,7 @@
       transition: all 0.3s ease;
     }
 
-    .top-bar .social-icons a:hover,
-    .top-bar .social-icons a:focus {
+    .top-bar .social-icons a:hover {
       color: #facc15;
       transform: scale(1.2);
     }
@@ -139,10 +138,10 @@
       color: #facc15 !important;
     }
 
-    /* Header (adjusted top position) */
+    /* Header */
     header {
       position: fixed;
-      top: 90px; /* taller top-bar on mobile */
+      top: 90px;
       left: 0;
       right: 0;
       width: 100%;
@@ -213,26 +212,32 @@
       background: #c2410c;
     }
 
-    /* Hero & sections unchanged */
+    /* Hero – background image fixed behind all content */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
       margin-top: calc(90px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-                  inherit;
+                  url('images/hero-bg.jpg') center/cover no-repeat fixed;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 4rem 5% 6rem;
+      position: relative;
       overflow: hidden;
+    }
+
+    .hero > div {
+      max-width: 1100px;
+      z-index: 2; /* ensures text is above overlay */
     }
 
     .hero h1 {
       font-size: 4.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       text-transform: uppercase;
       letter-spacing: 4px;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -250,13 +255,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .hero .btn {
-      padding: 0.75rem 1.6rem;
-      font-size: 1rem;
-      min-width: 140px;
+      padding: 0.9rem 2rem;
+      font-size: 1.1rem;
+      min-width: 160px;
     }
 
     main { padding-top: 0; }
@@ -409,7 +414,7 @@
       background: #c2410c;
     }
 
-    /* Mobile adjustments – ensure top bar fits perfectly */
+    /* Mobile adjustments */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.7rem 4%;
@@ -435,7 +440,7 @@
       }
 
       header {
-        top: 90px; /* adjusted for 3-line top bar */
+        top: 90px;
         padding: 0.7rem 5%;
         flex-direction: column;
         align-items: flex-start;
@@ -446,6 +451,14 @@
         margin-top: calc(90px + 72px);
         padding: 4rem 5% 6rem;
         min-height: 500px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
       }
 
       nav {
