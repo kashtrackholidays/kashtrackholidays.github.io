@@ -69,7 +69,7 @@
       line-height: 65px;
     }
 
-    /* Top bar – fixed layout, no scattering on mobile */
+    /* Top bar – fixed layout, phones on one line */
     .top-bar {
       position: fixed;
       top: 0;
@@ -81,26 +81,28 @@
       padding: 0.6rem 5%;
       font-size: 0.95rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       z-index: 1200;
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      flex-wrap: nowrap;
-      gap: 1rem;
+      gap: 0.4rem;
     }
 
-    .top-bar .contact-info {
+    .top-bar .phones-line {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      flex-shrink: 1;
-      min-width: 0;
+      justify-content: space-between;
+      width: 100%;
+      white-space: nowrap;
     }
 
-    .top-bar .phones,
-    .top-bar .email {
-      white-space: nowrap;
+    .top-bar .phones {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      flex-shrink: 0;
     }
 
     .top-bar .social-icons {
@@ -122,6 +124,10 @@
       transform: scale(1.2);
     }
 
+    .top-bar .email-line {
+      font-size: 0.9rem;
+    }
+
     .top-bar a {
       color: white !important;
       text-decoration: none;
@@ -134,7 +140,7 @@
     /* Header */
     header {
       position: fixed;
-      top: 42px;
+      top: 78px; /* adjusted for taller top-bar on mobile */
       left: 0;
       right: 0;
       width: 100%;
@@ -205,12 +211,12 @@
       background: #c2410c;
     }
 
-    /* Hero & other sections unchanged */
+    /* Hero & sections (unchanged) */
     .hero {
       width: 100%;
       min-height: 620px;
       height: auto;
-      margin-top: calc(42px + 72px);
+      margin-top: calc(78px + 72px);
       background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
                   inherit;
       color: white;
@@ -401,31 +407,25 @@
       background: #c2410c;
     }
 
-    /* Mobile adjustments – prevent scattering */
+    /* Mobile adjustments – ensure top bar fits */
     @media (max-width: 768px) {
       .top-bar {
         padding: 0.7rem 4%;
         font-size: 0.9rem;
-        flex-wrap: nowrap;
+        gap: 0.5rem;
+      }
+
+      .top-bar .phones-line {
+        font-size: 0.9rem;
         gap: 0.8rem;
-      }
-
-      .top-bar .contact-info {
-        gap: 0.8rem;
-        flex-wrap: nowrap;
-      }
-
-      .top-bar .phones,
-      .top-bar .email {
-        font-size: 0.85rem;
-      }
-
-      .top-bar .social-icons {
-        gap: 1rem;
       }
 
       .top-bar .social-icons a {
         font-size: 1.3rem;
+      }
+
+      .top-bar .email-line {
+        font-size: 0.85rem;
       }
 
       header {
@@ -458,15 +458,11 @@
       .top-bar {
         padding: 0.6rem 4%;
         font-size: 0.85rem;
-        gap: 0.6rem;
       }
 
-      .top-bar .contact-info {
+      .top-bar .phones-line {
+        font-size: 0.85rem;
         gap: 0.6rem;
-      }
-
-      .top-bar .social-icons {
-        gap: 0.8rem;
       }
 
       .top-bar .social-icons a {
@@ -489,25 +485,25 @@
 </head>
 <body>
 
-<!-- Top bar with social icons – fixed layout -->
+<!-- Top bar – phones + social on first line, email on second -->
 <div class="top-bar">
-  <div class="contact-info">
+  <div class="phones-line">
     <div class="phones">
       <i class="fas fa-phone-alt"></i> +91 7051711732 | +91 7006807423
     </div>
-    <div class="email">
-      <a href="mailto:kashtrackholidays786@gmail.com">
-        <i class="fas fa-envelope"></i> kashtrackholidays786@gmail.com
+    <div class="social-icons">
+      <a href="https://www.instagram.com/kashtrackholidays" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/kashtrackholiday" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
       </a>
     </div>
   </div>
 
-  <div class="social-icons">
-    <a href="https://www.instagram.com/kashtrackholidays" target="_blank" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.facebook.com/kashtrackholiday" target="_blank" aria-label="Facebook">
-      <i class="fab fa-facebook"></i>
+  <div class="email-line">
+    <a href="mailto:kashtrackholidays786@gmail.com">
+      <i class="fas fa-envelope"></i> kashtrackholidays786@gmail.com
     </a>
   </div>
 </div>
@@ -624,7 +620,6 @@
       Email: <a href="mailto:kashtrackholidays786@gmail.com">kashtrackholidays786@gmail.com</a><br>
       Contact: +91 7051711732 | +91 7006807423
     </p>
-    <!-- Social icons removed from footer -->
     <p style="margin-top:2rem; opacity:0.8;">© 2026 Kash Track Holidays. All Rights Reserved.</p>
   </footer>
 </main>
