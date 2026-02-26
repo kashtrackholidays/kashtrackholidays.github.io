@@ -84,6 +84,22 @@
 
     .top-bar .email-line { font-size: 0.85rem; width: 100%; }
 
+    /* Force email (and all links) in top bar to be WHITE in all states */
+    .top-bar a,
+    .top-bar a:link,
+    .top-bar a:visited,
+    .top-bar a:hover,
+    .top-bar a:active,
+    .top-bar a:focus {
+      color: white !important;
+      text-decoration: none !important;
+    }
+
+    /* Hover effect: yellow only on hover */
+    .top-bar a:hover {
+      color: #facc15 !important;
+    }
+
     header {
       position: fixed; top: 62px; left: 0; right: 0; width: 100%;
       background: rgba(30,58,138,0.75); color: white; z-index: 1100;
@@ -174,7 +190,6 @@
 
     .why-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
 
-    /* ACTIVITIES SECTION WITH BACKGROUND IMAGE */
     .activities-section {
       background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
                   url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat fixed;
@@ -243,7 +258,9 @@
 
     .footer-content p { margin: 0.8rem 0; font-size: 1.05rem; }
 
-    .footer-address i, .footer-email i, .footer-phone i {
+    .footer-address i,
+    .footer-email i,
+    .footer-phone i {
       margin-right: 0.6rem; font-size: 1.2rem; color: #fff;
     }
 
@@ -661,7 +678,6 @@
 </div>
 
 <script>
-  // Open modal on "Book Now" clicks
   document.querySelectorAll('.book-now-trigger').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
@@ -669,14 +685,10 @@
     });
   });
 
-  // Close modal when clicking outside
   document.getElementById('bookingModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      this.style.display = 'none';
-    }
+    if (e.target === this) this.style.display = 'none';
   });
 
-  // Flatpickr date range picker
   flatpickr("#travelDates", {
     mode: "range",
     dateFormat: "d-m-Y",
@@ -699,5 +711,3 @@
 
 </body>
 </html>
-
-
