@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Destinations - Kash Track Holidays</title>
+  <title>Contact - Kash Track Holidays</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@
       --accent: #ea580c;
       --light-bg: #f9fafb;
       --whatsapp: #25D366;
-      --footer-green: #2e7d32;       /* green footer */
+      --footer-green: #2e7d32;
       --fb-blue: #1877f2;
       --ig-pink: #e1306c;
     }
@@ -30,14 +30,17 @@
 
     html, body {
       width: 100%;
-      margin: 0;
-      padding: 0;
+      height: 100%;
       overflow-x: hidden;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      color: #333;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* WhatsApp Floating Button */
@@ -57,6 +60,7 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .whatsapp-float:hover {
@@ -64,7 +68,7 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
-    /* Top bar */
+    /* Top bar – brand colors always */
     .top-bar {
       position: fixed;
       top: 0;
@@ -79,7 +83,6 @@
       flex-direction: column;
       align-items: flex-start;
       z-index: 1200;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.2);
       gap: 0.35rem;
       line-height: 1.3;
     }
@@ -132,8 +135,12 @@
     }
 
     .top-bar a {
-      color: white;
+      color: white !important;
       text-decoration: none;
+    }
+
+    .top-bar a:hover {
+      color: #facc15 !important;
     }
 
     /* Header */
@@ -215,62 +222,60 @@
     }
 
     main {
+      flex: 1 0 auto;
       margin-top: calc(62px + 78px);
-      padding-top: 2rem;
-      width: 100%;
-      min-height: calc(100vh - 122px);
+      padding: 4rem 5% 6rem;
     }
 
     .section {
-      padding: 6rem 5% 4rem;
-      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .title {
-      text-align: center;
       font-size: 2.8rem;
       color: var(--primary);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .subtitle {
-      text-align: center;
-      color: #4b5563;
       font-size: 1.3rem;
+      color: #4b5563;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-details {
+      font-size: 1.25rem;
+      line-height: 2;
       margin-bottom: 3rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      width: 100%;
-    }
-
-    .card {
       background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      transition: 0.3s;
-      text-align: center;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
 
-    .card:hover {
-      transform: translateY(-10px);
+    .contact-details p {
+      margin: 1.2rem 0;
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .contact-details i {
+      margin-right: 0.8rem;
+      color: var(--accent);
+      font-size: 1.4rem;
     }
 
-    .card-body {
-      padding: 1.5rem;
+    .contact-details a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
     }
 
     footer {
+      flex-shrink: 0;
       background: var(--footer-green);
       color: white;
       padding: 4rem 5% 2rem;
@@ -286,8 +291,8 @@
     .footer-address i,
     .footer-email i,
     .footer-phone i {
-      margin-right: 0.6rem;
-      font-size: 1.2rem;
+      margin-right: 0.8rem;
+      font-size: 1.3rem;
       color: #fff;
     }
 
@@ -321,8 +326,8 @@
       inset: 0;
       background: rgba(0,0,0,0.7);
       z-index: 1300;
-      align-items: center !important;
-      justify-content: center !important;
+      align-items: center;
+      justify-content: center;
       padding: 1rem;
     }
 
@@ -442,6 +447,19 @@
 
       main {
         margin-top: calc(62px + 110px);
+        padding: 3rem 5% 6rem;
+      }
+
+      footer {
+        padding: 3rem 5% 2rem;
+      }
+
+      .social {
+        gap: 1.5rem;
+      }
+
+      .social a {
+        font-size: 2rem;
       }
     }
 
@@ -451,17 +469,12 @@
         padding: 0.5rem 4% 0.45rem;
       }
 
-      header {
-        top: 62px;
+      .social {
+        gap: 1.2rem;
       }
 
-      .logo {
-        font-size: 1.25rem;
-      }
-
-      nav a {
-        margin: 0 0.8rem 0 0;
-        font-size: 0.85rem;
+      .social a {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -506,154 +519,74 @@
 
 <main>
   <section class="section">
-    <h2 class="title">Popular Destinations</h2>
-    <p class="subtitle">Explore the paradise of Kashmir & Ladakh</p>
-    <div class="grid">
-      <div class="card">
-        <img src="images/Shalimar.jpg" alt="Shalimar">
-        <div class="card-body">
-          <h3>Srinagar</h3>
-          <p>The Bagh was built by Mughal Emperor Jahangir for his wife Noor Jahan, in 1619. The Bagh is considered the high point of Mughal horticulture. It is now a public park Srinagar.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/dal-lake-destination.jpg" alt="Dal Lake">
-        <div class="card-body">
-          <h3>Dal Lake</h3>
-          <p>The Jewel in the Crown of Kashmir is a 18 sq km urban lake in Srinagar known for its iconic houseboats Shikara boat rides and vibrant floating veg. market.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Shankaracharya.jpg" alt="Shankaracharya">
-        <div class="card-body">
-          <h3>Shankaracharya</h3>
-          <p>Shankaracharya Temple or Jyeshteshwara Temple is a Hindu temple situated on top of the Zabarwan Range in Srinagar in the Kashmir Valley of the union territory of J&k.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Bangus valley.jpg" alt="Bangus valley">
-        <div class="card-body">
-          <h3>Bangus valley</h3>
-          <p>Bangus valley is an offbeat place that offers you some mesmerizing beautiful landscapes, mountain peaks, meadows and water streams.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/aru-valley.jpg" alt="Aru Valley">
-        <div class="card-body">
-          <h3>Aru Valley</h3>
-          <p>Aru Valley is famous for its stunning natural beauty, featuring lush meadows, snow-capped peaks, and pristine streams, making it a paradise for nature lovers & photography enthusiasts.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/BETAAB VALLEY.jpg" alt="BETAAB VALLEY">
-        <div class="card-body">
-          <h3>Pahalgam, Betaab Valley</h3>
-          <p>Betaab Valley in Kashmir is famous for its breathtaking natural beauty, including lush green meadows, snow-capped mountains, and the Lidder River.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/gulmarg-destination.jpg" alt="Gulmarg">
-        <div class="card-body">
-          <h3>Gulmarg</h3>
-          <p>Gulmarg Kashmir is known as the Meadow of Flowers offering stunning Himalayan views alpine and vibrant wildflower meadowsparticularly known for lupine blooms.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Gandola.jpg" alt="Gandola">
-        <div class="card-body">
-          <h3>Gandola, Gulmarg, Kashmir</h3>
-          <p>One of the main attractions in Gulmarg is the Gulmarg Gondola, the Highest Cable Car in the world. The 1st phase of the Gondola takes tourists to the height of 8030ft.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Doodhpathri.jpg" alt="Doodhpathri">
-        <div class="card-body">
-          <h3>Doodhpathri</h3>
-          <p>Doodhpathri, known as the Valley of Milk is a stunning lesser-known hill station in Jammu and Kashmir’s Budgam district, situated at 8,957 feet.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Gurez Valley.jpg" alt="Gurez Valley">
-        <div class="card-body">
-          <h3>Gurez Valley</h3>
-          <p>Gurez Valley, located in J&k Bandipore ,is a remote, scenic Himalayan region known for the Kishanganga River, snow-capped peaks  and the iconic Habba Khatoon mountain.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/sonamarg2.jpg" alt="Sonamarg">
-        <div class="card-body">
-          <h3>Sonamarg</h3>
-          <p>Sonamarg, known as the Meadow of Gold, is a breathtaking hill station in J&kit serves as a gateway to Ladakh, featuring snow-capped peaks, the Sindh River, and the stunn</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/Dal-Lake Houseboat View.jpg" alt="Dal-Lake Houseboat View">
-        <div class="card-body">
-          <h3>Dal-Lake Houseboat</h3>
-          <p>Dal-Lake Houseboat View, Srinagar</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <img src="images/pahalgam-destination.jpg" alt="Pahalgam">
-        <div class="card-body">
-          <h3>Pahalgam</h3>
-          <p>Betaab Valley, Aru, Lidder River</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <img src="images/shanti-stupa-1.jpg" alt="Ladakh">
-        <div class="card-body">
-          <h3>Ladakh</h3>
-          <p>Shanti Stupa, Sham Valley, Khardung-la, Pangong Lake</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="images/maa-vaishno-devi night view.jpg" alt="Katra">
-        <div class="card-body">
-          <h3>Katra</h3>
-          <p>Vaishno Devi</p>
-        </div>
+    <div class="contact-container">
+      <h2 class="title">Get in Touch</h2>
+      <p class="subtitle">We're here to help you plan your perfect Kashmir or Ladakh journey</p>
+
+      <div class="contact-details">
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Address:</strong><br>
+          2ND FLOOR KHAN COMPLEX, HMT SALTANGE NATIONAL HIGHWAY<br>
+          SRINAGAR, JAMMU AND KASHMIR PIN CODE 190012
+        </p>
+
+        <p style="margin: 2rem 0;">
+          <i class="fas fa-envelope"></i>
+          <strong>Email:</strong><br>
+          <a href="mailto:kashtrackholidays786@gmail.com">kashtrackholidays786@gmail.com</a>
+        </p>
+
+        <p>
+          <i class="fas fa-phone-alt"></i>
+          <strong>Phone / WhatsApp:</strong><br>
+          +91 7051711732<br>
+          +91 7006807423
+        </p>
+
+        <p style="font-size: 1.15rem; margin-top: 2.5rem;">
+          Feel free to call, WhatsApp, or email us anytime.<br>
+          We reply within a few hours — 24/7 support available.
+        </p>
       </div>
     </div>
   </section>
-
-  <footer>
-    <div class="footer-content">
-      <p style="margin-bottom:1rem; font-size:1.2rem; font-weight:600;">Kash Track Holidays</p>
-
-      <p class="footer-address">
-        <i class="fas fa-map-marker-alt"></i>
-        2ND FLOOR KHAN COMPLEX, HMT SALTANGE NATIONAL HIGHWAY<br>
-        SRINAGAR, JAMMU AND KASHMIR PIN CODE 190012
-      </p>
-
-      <p style="margin:1.5rem 0;">
-        <i class="fas fa-envelope"></i>
-        <a href="mailto:kashtrackholidays786@gmail.com" style="color:#fff;">kashtrackholidays786@gmail.com</a>
-      </p>
-
-      <p>
-        <i class="fas fa-phone-alt"></i>
-        +91 7051711732 | +91 7006807423
-      </p>
-
-      <div class="social">
-        <a href="https://www.instagram.com/kashtrackholidays" target="_blank" class="instagram" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com/kashtrackholiday" target="_blank" class="facebook" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-      </div>
-
-      <p style="margin-top:2rem; opacity:0.9;">© 2026 Kash Track Holidays. All Rights Reserved.</p>
-    </div>
-  </footer>
 </main>
 
-<!-- WhatsApp Floating Button -->
+<footer>
+  <div class="footer-content">
+    <p style="margin-bottom:1rem; font-size:1.2rem; font-weight:600;">Kash Track Holidays</p>
+
+    <p class="footer-address">
+      <i class="fas fa-map-marker-alt"></i>
+      2ND FLOOR KHAN COMPLEX, HMT SALTANGE NATIONAL HIGHWAY<br>
+      SRINAGAR, JAMMU AND KASHMIR PIN CODE 190012
+    </p>
+
+    <p style="margin:1.5rem 0;">
+      <i class="fas fa-envelope"></i>
+      <a href="mailto:kashtrackholidays786@gmail.com" style="color:#fff;">kashtrackholidays786@gmail.com</a>
+    </p>
+
+    <p>
+      <i class="fas fa-phone-alt"></i>
+      +91 7051711732 | +91 7006807423
+    </p>
+
+    <div class="social">
+      <a href="https://www.instagram.com/kashtrackholidays" target="_blank" class="instagram" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/kashtrackholiday" target="_blank" class="facebook" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+
+    <p style="margin-top:2rem; opacity:0.9;">© 2026 Kash Track Holidays. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Chat Button -->
 <a href="https://wa.me/917051711732?text=Hello%20Kash%20Track%20Holidays!%20I%20want%20to%20book%20a%20tour." class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
 </a>
